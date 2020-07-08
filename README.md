@@ -1,6 +1,6 @@
 # KramdownRender
 
-Simple plugin making it possible to easily render currently edited
+Simple Sublime Text 3 plugin making it possible to easily render currently edited
 [kramdown](https://kramdown.gettalong.org/) document using a web browser.
 
 Also works for Markdown (since kramdown is a superset).
