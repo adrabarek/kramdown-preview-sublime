@@ -1,4 +1,4 @@
-# KramdownRender
+# Kramdown Preview
 
 Simple plugin making it possible to easily render currently edited
 [kramdown](https://kramdown.gettalong.org/) document using a web browser.

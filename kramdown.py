@@ -20,7 +20,7 @@ FOOTER = b"""</body>
 </html>
 """
 
-class RenderKramdownInBrowser(TextCommand):
+class PreviewKramdown(TextCommand):
 	def run(self, edit):
 		fn = self.view.file_name()
 
