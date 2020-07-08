@@ -1,4 +1,5 @@
-import sublime_plugin
+from sublime_plugin import TextCommand
+from sublime import Region
 import tempfile
 import os
 
@@ -19,18 +20,22 @@ FOOTER = b"""</body>
 </html>
 """
 
-class RenderKramdownInBrowser(sublime_plugin.TextCommand):
+class RenderKramdownInBrowser(TextCommand):
 	def run(self, edit):
 		fn = self.view.file_name()
 
-		command = 'kramdown ' + os.path.abspath(fn)
-		stream = os.popen(command)
-		output = stream.read()
+		content = ''
+		with tempfile.NamedTemporaryFile() as f:
+			f.write(bytes(self.view.substr(Region(0, self.view.size())), 'utf-8'))
+			f.flush()
+			stream = os.popen('kramdown ' + f.name)
+			content = stream.read()				
 
 		with tempfile.NamedTemporaryFile(delete=False, suffix='.html') as f:
 			f.write(HEADER)
-			f.write(bytes(output, 'utf-8'))
+			f.write(bytes(content, 'utf-8'))
 			f.write(FOOTER)
+			f.flush()
 			command = 'sensible-browser ' + f.name + '&'
 
 		stream = os.popen(command)
