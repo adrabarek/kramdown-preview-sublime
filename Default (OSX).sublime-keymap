@@ -1,3 +1,3 @@
 [
-	{ "keys": ["super+shift+alt+m"], "command": "html_show" },
+	{ "keys": ["super+shift+alt+m"], "command": "render_kramdown_in_browser" },
 ]
