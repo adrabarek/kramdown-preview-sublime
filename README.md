@@ -1,7 +1,9 @@
 # Kramdown Preview
 
-Simple plugin making it possible to easily render currently edited
+Simple Sublime Text 3 plugin making it possible to easily render currently edited
 [kramdown](https://kramdown.gettalong.org/) document using a web browser.
+
+![Example](res/example.png)
 
 Also works for Markdown (since kramdown is a superset).
 Useful for quick live-preview of documents such as READMEs.
@@ -38,5 +40,3 @@ written using LaTeX will render as expected.
 Press the associated key combination (default: `Ctrl + Alt + Shift + m`) 
 while editing a buffer in ST3. It is going to be interpreted as kramdown and 
 rendered in your web browser.
-
-![Example](res/example.png)
