@@ -19,21 +19,9 @@ written using LaTeX will render as expected.
 
 ## Installation
 
-1. Clone the repository: 
+Clone the repository into Sublime `Packages` directory (below is default for Linux):
 
-	`$ git clone https://github.com/drabard/kramdown-sublime`
-
-2. Enter the directory: 
-	
-	`$ cd kramdown-sublime`
-
-3. Create the sublime package: 
-	
-	`$ ./create_package.sh`
-
-4. Copy `KramdownRender.sublime-package` to `Installed Packages` folder in your Sublime configuration folder (below is default on Linux):
-
-	`$ cp KramdownRender.sublime-package ~/.config/sublime-text-3/Installed\ Packages`
+`$ git clone https://github.com/drabard/kramdown-sublime ~/.config/sublime-text-3/Packages`
 
 ## Usage
 
