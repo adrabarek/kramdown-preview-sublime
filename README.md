@@ -21,7 +21,7 @@ written using LaTeX will render as expected.
 
 Clone the repository into Sublime `Packages` directory (below is default for Linux):
 
-`$ git clone https://github.com/drabard/kramdown-sublime ~/.config/sublime-text-3/Packages`
+`$ git clone https://github.com/drabard/kramdown-preview-sublime ~/.config/sublime-text-3/Packages`
 
 ## Usage
 
