@@ -1,7 +1,13 @@
+'''
+Sublime Text 3 plugin for previewing currently edited kramdown
+document in a web browser.
+'''
+
+import os
+from tempfile import NamedTemporaryFile
+
 from sublime_plugin import TextCommand
 from sublime import Region
-import tempfile
-import os
 
 HEADER = b"""<!DOCTYPE html>
 <html>
@@ -20,22 +26,29 @@ FOOTER = b"""</body>
 </html>
 """
 
+
 class PreviewKramdown(TextCommand):
-	def run(self, edit):
-		fn = self.view.file_name()
+    '''Opens web browser and renders currently active document as kramdown.'''
 
-		content = ''
-		with tempfile.NamedTemporaryFile() as f:
-			f.write(bytes(self.view.substr(Region(0, self.view.size())), 'utf-8'))
-			f.flush()
-			stream = os.popen('kramdown ' + f.name)
-			content = stream.read()				
+    def run(self, _):
+        content = ''
+        with NamedTemporaryFile() as tmpfile:
+            tmpfile.write(
+                bytes(
+                    self.view.substr(
+                        Region(
+                            0,
+                            self.view.size())),
+                    'utf-8'))
+            tmpfile.flush()
+            stream = os.popen('kramdown ' + tmpfile.name)
+            content = stream.read()
 
-		with tempfile.NamedTemporaryFile(delete=False, suffix='.html') as f:
-			f.write(HEADER)
-			f.write(bytes(content, 'utf-8'))
-			f.write(FOOTER)
-			f.flush()
-			command = 'sensible-browser ' + f.name + '&'
+        with NamedTemporaryFile(delete=False, suffix='.html') as tmpfile:
+            tmpfile.write(HEADER)
+            tmpfile.write(bytes(content, 'utf-8'))
+            tmpfile.write(FOOTER)
+            tmpfile.flush()
+            command = 'sensible-browser ' + tmpfile.name + '&'
 
-		stream = os.popen(command)
+        stream = os.popen(command)
